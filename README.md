@@ -13,7 +13,7 @@ Este repositorio recoge un prototipo academico dividido en dos partes:
 
 - `app.py`: interfaz de Streamlit
 - `vigilance_backend.py`: logica del sistema de vigilancia
-- `01_finetuning_efficientnet_mura_ACTUALIZADO_revisado_integrado.ipynb`: notebook de entrenamiento e inferencia
+- `01_finetuning_efficientnet_mura.ipynb`: notebook de entrenamiento e inferencia
 - `02_prueba_interfaz.ipynb`: notebook de pruebas funcionales de la aplicacion
 - `outputs/tablas/`: CSVs generados para ejecutar la app sin repetir todo el entrenamiento
 - `outputs/imagenes_analizadas/`: imagenes analizadas que usa la demo visual de la app
@@ -24,7 +24,7 @@ Este repositorio recoge un prototipo academico dividido en dos partes:
 .
 ├── app.py
 ├── vigilance_backend.py
-├── 01_finetuning_efficientnet_mura_ACTUALIZADO_revisado_integrado.ipynb
+├── 01_finetuning_efficientnet_mura.ipynb
 ├── 02_prueba_interfaz.ipynb
 ├── requirements.txt
 ├── data/
@@ -83,7 +83,7 @@ streamlit run app.py
 
 Abrir y ejecutar:
 
-`01_finetuning_efficientnet_mura_ACTUALIZADO_revisado_integrado.ipynb`
+`01_finetuning_efficientnet_mura.ipynb`
 
 Este notebook:
 
