@@ -1,0 +1,9 @@
+id_alerta,estado,fecha_actualizacion,motivo_cierre,accion_realizada,responsable,requiere_seguimiento
+alerta_use-01_global_red_030442db,open,,,,,
+alerta_cal-01_global_red_030442db,open,,,,,
+alerta_use-01_global_orange_030442db,open,,,,,
+alerta_use-01_global_yellow_030442db,open,,,,,
+alerta_clin-03_global_orange_030442db,open,,,,,
+alerta_clin-02_global_yellow_030442db,open,,,,,
+alerta_clin-03_global_red_030442db,open,,,,,
+alerta_data-01_global_red_1ed88e25,open,,,,,
