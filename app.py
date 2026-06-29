@@ -138,7 +138,7 @@ def mostrar_matriz_confusion(datos):
         .mark_rect(stroke="#111827", strokeWidth=1)  # Usamos rectángulos para representar cada celda
         .encode(                                       # Definimos como se codifican los datos visualmente
             x=alt.X("prediccion:N", title="Prediccion", sort=["normal", "anormal"]),  # Predicción del modelo
-            y=alt.Y("referencia:N", title="Referencia", sort=["anormal", "normal"]),  # Referencia urgencias
+            y=alt.Y("referencia:N", title="Referencia", sort=["normal", "anormal"]),  # Referencia urgencias
             color=alt.Color("casos:Q", legend=None, scale=alt.Scale(scheme="blues")), # El color depende del número de casos, Q significa cuantitativo
             tooltip=["referencia:N", "prediccion:N", "casos:Q"],                      # Al pasar el ratón muestra referencia, predicción y casos
         )
