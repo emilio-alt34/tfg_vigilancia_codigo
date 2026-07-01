@@ -271,7 +271,13 @@ def mostrar_revision(registro_inferencias, valoraciones):
         if ruta and ruta.exists():
             _ = columna.image(cargar_imagen_mostrar(ruta), caption=titulo_imagen, use_container_width=True)
         else:
-            _ = columna.warning("Imagen no encontrada.")
+            if titulo_imagen == "Radiografia original":
+                _ = columna.warning(
+                    "Radiografia original no disponible. Para mostrarla debe descargarse "
+                    "MURA-v1.1 en `data/MURA-v1.1/`."
+                )
+            else:
+                _ = columna.warning("Imagen no encontrada.")
 
     # Muestra la información del caso y el formulario para introducir la valoración.
     with col_info:

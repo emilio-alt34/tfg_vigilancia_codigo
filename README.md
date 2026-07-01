@@ -45,6 +45,8 @@ Las dependencias principales del proyecto se recogen en `requirements.txt`.
 Crear o activar un entorno virtual y despues instalar las dependencias:
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -76,6 +78,19 @@ Si no se descarga MURA:
 Lanzar Streamlit desde la raiz del repositorio:
 
 ```bash
+streamlit run app.py
+```
+
+## Flujo probado desde una descarga limpia
+
+La secuencia validada sobre una descarga nueva del repositorio es la siguiente:
+
+```bash
+git clone https://github.com/emilio-alt34/tfg_vigilancia_codigo.git
+cd tfg_vigilancia_codigo
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 streamlit run app.py
 ```
 
@@ -119,6 +134,9 @@ Dentro de `outputs/tablas/` se incluyen los ficheros principales que usa la apli
 - `alertas_estado.csv`
 - `audit_log.csv`
 
+Los cuatro ultimos almacenan el estado persistente de la demo. En este repositorio
+se incluyen ya vacios, de forma que una descarga nueva arranca en estado limpio.
+
 ## Notas de uso
 
 - La interfaz esta pensada como prototipo academico, no como producto clinico real.
@@ -128,6 +146,7 @@ Dentro de `outputs/tablas/` se incluyen los ficheros principales que usa la apli
 
 ## Posibles incidencias
 
-- Si Streamlit no encuentra una imagen original, normalmente faltara `data/MURA-v1.1/`.
+- Si Streamlit no encuentra una imagen original, normalmente faltara `data/MURA-v1.1/`. El repositorio no incluye ese dataset, por lo que la app puede ejecutarse sin el, pero en ese caso solo mostrara la imagen analizada.
 - Si la app no arranca, comprobar que las dependencias estan instaladas y que `outputs/tablas/` contiene los CSV esperados.
+- Si la auditoria o las alertas muestran eventos anteriores, significa que esos CSV ya contienen estado persistente de una ejecucion previa. Para repetir la prueba desde cero, deben dejarse vacios `feedback_manual.csv`, `alertas_generadas.csv`, `alertas_estado.csv` y `audit_log.csv`, conservando solo la cabecera.
 - Si se quiere volver a generar todo desde cero, primero debe ejecutarse el notebook de entrenamiento.
