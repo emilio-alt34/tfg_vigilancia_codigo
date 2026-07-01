@@ -264,8 +264,13 @@ def guardar_feedback(row, etiqueta_ap, incidencia_revision, note):  # Row es la 
         "incidencia_revision": incidencia_revision or "none",
         "hash_modelo": row.get("hash_modelo", ""),
     }
-    # Añadimos la nueva fila al feedback anterior y lo guardamos todo en CSV.
-    pd.concat([feedback, pd.DataFrame([new_row])], ignore_index=True).to_csv(ARCHIVO_FEEDBACK, index=False) 
+    # Si el CSV está vacío, evitamos concatenar con un DataFrame vacío para no
+    # disparar avisos innecesarios de pandas.
+    nuevo_feedback = pd.DataFrame([new_row], columns=COLUMNAS_FEEDBACK)
+    if feedback.empty:
+        nuevo_feedback.to_csv(ARCHIVO_FEEDBACK, index=False)
+    else:
+        pd.concat([feedback, nuevo_feedback], ignore_index=True).to_csv(ARCHIVO_FEEDBACK, index=False)
     return new_row
 
 
@@ -890,7 +895,11 @@ def guardar_eventos_auditoria(events):
         row["id_evento"] = row["id_evento"] or "audit_" + uuid4().hex[:10]
         row["fecha"] = row["fecha"] or fecha_utc()
         rows.append(row)
-    pd.concat([audit, pd.DataFrame(rows)], ignore_index=True).to_csv(ARCHIVO_AUDITORIA, index=False)
+    nuevos_eventos = pd.DataFrame(rows, columns=COLUMNAS_AUDITORIA)
+    if audit.empty:
+        nuevos_eventos.to_csv(ARCHIVO_AUDITORIA, index=False)
+    else:
+        pd.concat([audit, nuevos_eventos], ignore_index=True).to_csv(ARCHIVO_AUDITORIA, index=False)
 
 
 def texto_etiqueta(value):
