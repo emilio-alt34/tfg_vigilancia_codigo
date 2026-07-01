@@ -204,7 +204,7 @@ def filtrar_casos(datos, prefijo, solo_pendientes=False):
     """Permite aplicar filtros comunes a los casos tocar el dataframe original (selector)."""
     col_parte, col_pendientes = st.columns([3, 1])
 
-    # Creamos un despliegue para filtrar por parte antómica
+    # Se crea un desplegable para filtrar por parte antómica
     parte_anatomica = col_parte.selectbox("Parte anatomica", ["Todas"] + sorted(datos["parte_anatomica"].dropna().unique()), key=f"{prefijo}_body")
     solo_pendientes = col_pendientes.checkbox("Solo pendientes", value=solo_pendientes, key=f"{prefijo}_pending")
 
