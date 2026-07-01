@@ -252,12 +252,16 @@ def mostrar_revision(registro_inferencias, valoraciones):
         st.session_state.review_pos = min(len(vista) - 1, st.session_state.review_pos + 1)
         st.rerun()
 
-    # Calcula el número de casos revisados para mostrar el progreso en la barra. La posición global se calcula sumando el número de casos revisados, la posición actual en la revisión y 1
+    # Mostramos por separado el avance real de casos revisados y la posicion del
+    # caso visible dentro de la lista filtrada para evitar confusiones.
     revisados = int(registro_inferencias["tiene_feedback_manual"].sum())
     total_casos = len(registro_inferencias)
-    posicion_global = min(total_casos, revisados + st.session_state.review_pos + 1)
-    _ = barra.progress(posicion_global / total_casos)
-    _ = barra.caption(f"Revision {posicion_global} de {total_casos}")
+    posicion_visible = st.session_state.review_pos + 1
+    _ = barra.progress(revisados / total_casos if total_casos else 0)
+    _ = barra.caption(
+        f"Casos revisados: {revisados} de {total_casos} | "
+        f"Caso visible en la lista actual: {posicion_visible} de {len(vista)}"
+    )
 
     # Muestra el caso actual con sus imágenes, información y formulario de valoración. El caso se obtiene de la vista filtrada usando la posición actual en sesión.
     caso = vista.iloc[st.session_state.review_pos]
